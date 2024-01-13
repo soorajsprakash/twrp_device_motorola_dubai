@@ -6,9 +6,9 @@
 #
 
 PRODUCT_MAKEFILES := \
-    $(LOCAL_DIR)/omni_dubai.mk
+    $(LOCAL_DIR)/twrp.mk
 
 COMMON_LUNCH_CHOICES := \
-    omni_dubai-user \
-    omni_dubai-userdebug \
-    omni_dubai-eng
+    twrp_dubai-user \
+    twrp_dubai-userdebug \
+    twrp_dubai-eng
