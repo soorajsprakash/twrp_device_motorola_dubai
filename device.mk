@@ -60,7 +60,7 @@ PRODUCT_SOONG_NAMESPACES += \
     hardware/qcom-caf/bootctrl \
     vendor/qcom/opensource/commonsys-intf/display
 
-PRODUCT_STATIC_BOOT_CONTROL_HAL := \
+PRODUCT_PACKAGES := \
     bootctrl.lahaina \
     libgptutils \
     libz \
