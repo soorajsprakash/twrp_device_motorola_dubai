@@ -19,7 +19,7 @@ $(call inherit-product, $(SRC_TARGET_DIR)/product/gsi_keys.mk)
 
 LOCAL_PATH := device/motorola/dubai
 
-ifeq ($(TARGET_DEVICE),Spacewar)
+ifeq ($(TARGET_DEVICE),dubai)
 subdir_makefiles=$(call first-makefiles-under,$(LOCAL_PATH))
 $(foreach mk,$(subdir_makefiles),$(info including $(mk) ...)$(eval include $(mk)))
 
