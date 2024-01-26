@@ -13,11 +13,15 @@ ALLOW_MISSING_DEPENDENCIES := true
 # A/B
 AB_OTA_UPDATER := true
 AB_OTA_PARTITIONS += \
+    boot \
+    dtbo \
+    product \
     system \
     system_ext \
-    product \
+    vbmeta \
+    vbmeta_system \
     vendor \
-    vendor_boot \
+    vendor_boot
 
 TARGET_NO_RECOVERY := true
 BOARD_BOOT_HEADER_VERSION := 4
