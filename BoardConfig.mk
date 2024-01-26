@@ -52,7 +52,7 @@ TARGET_SCREEN_DENSITY := 400
 
 # Kernel
 BOARD_KERNEL_BASE := 0x00000000
-# TODO: remove "androidboot.." from kernel cmdline after verification
+# TODO: remove "androidboot.." from kernel cmdline after verification, effect of boot header v4
 BOARD_KERNEL_CMDLINE := console=ttyMSM0,115200n8 androidboot.hardware=qcom androidboot.console=ttyMSM0 androidboot.memcg=1 lpm_levels.sleep_disabled=1 msm_rtb.filter=0x237 service_locator.enable=1 androidboot.usbcontroller=a600000.dwc3 swiotlb=0 loop.max_part=7 cgroup.memory=nokmem,nosocket pcie_ports=compat iptable_raw.raw_before_defrag=1 ip6table_raw.raw_before_defrag=1 androidboot.hab.csv=8 androidboot.hab.cid=50 firmware_class.path=/vendor/firmware_mnt/image androidboot.hab.product=dubai buildvariant=userdebug
 BOARD_BOOTCONFIG := androidboot.hardware=qcom androidboot.console=ttyMSM0 androidboot.memcg=1 androidboot.usbcontroller=a600000.dwc3 androidboot.hab.csv=8 androidboot.hab.cid=50 androidboot.hab.product=dubai
 BOARD_KERNEL_PAGESIZE := 4096
@@ -67,8 +67,6 @@ BOARD_MKBOOTIMG_ARGS += --kernel_offset $(BOARD_KERNEL_OFFSET)
 BOARD_MKBOOTIMG_ARGS += --dtb_offset $(BOARD_DTB_OFFSET)
 BOARD_MKBOOTIMG_ARGS += --tags_offset $(BOARD_TAGS_OFFSET)
 BOARD_KERNEL_IMAGE_NAME := Image
-TARGET_KERNEL_CONFIG := dubai_defconfig
-TARGET_KERNEL_SOURCE := kernel/motorola/dubai
 
 
 # Kernel - prebuilt
@@ -124,13 +122,6 @@ BOARD_AVB_VENDOR_BOOT_ROLLBACK_INDEX_LOCATION := 1
 BOARD_USES_QCOM_HARDWARE := true
 TARGET_BOARD_PLATFORM := lahaina
 
-# Recovery
-TARGET_RECOVERY_FSTAB := $(DEVICE_PATH)/recovery.fstab
-TARGET_RECOVERY_PIXEL_FORMAT := RGBX_8888
-TARGET_USERIMAGES_USE_EXT4 := true
-TARGET_USERIMAGES_USE_F2FS := true
-BOARD_HAS_LARGE_FILESYSTEM := true
-
 # Crypto
 TW_INCLUDE_CRYPTO := true
 TW_INCLUDE_CRYPTO_FBE := true
@@ -138,6 +129,9 @@ BOARD_USES_QCOM_FBE_DECRYPTION := true
 BOARD_USES_METADATA_PARTITION := true
 TW_USE_FSCRYPT_POLICY := 1
 TW_PREPARE_DATA_MEDIA_EARLY := true
+TW_INCLUDE_FBE_METADATA_DECRYPT := true
+PLATFORM_VERSION_LAST_STABLE := $(PLATFORM_VERSION)
+
 
 # Hack: prevent anti rollback
 PLATFORM_SECURITY_PATCH := 2099-12-31
@@ -147,7 +141,7 @@ PLATFORM_VERSION := 16.1.0
 # TWRP Configuration
 TW_THEME := portrait_hdpi
 TW_EXTRA_LANGUAGES := true
-TW_SCREEN_BLANK_ON_BOOT := true
+# TW_SCREEN_BLANK_ON_BOOT := true
 TW_INPUT_BLACKLIST := "hbtp_vm"
 TW_USE_TOOLBOX := true
 TW_INCLUDE_REPACKTOOLS := true
@@ -161,7 +155,14 @@ TW_DEFAULT_BRIGHTNESS := 1200
 TWRP_INCLUDE_LOGCAT := true
 TARGET_USES_MKE2FS := true
 TW_EXCLUDE_TWRPAPP := true
+TW_INCLUDE_RESETPROP := true
+TARGET_USES_LOGD := true
+TW_NO_SCREEN_BLANK := true
+TW_EXCLUDE_APEX := true
+TW_CUSTOM_BATTERY_PATH := "/sys/class/power_supply/mmi_battery"
+TW_CUSTOM_CPU_TEMP_PATH := "/sys/devices/virtual/thermal/thermal_zone50/temp"
 TW_OVERRIDE_SYSTEM_PROPS := "ro.build.date.utc;ro.build.product;ro.build.fingerprint=ro.system.build.fingerprint;ro.build.version.incremental;ro.product.device=ro.product.system.device;ro.product.model=ro.product.system.model;ro.product.name=ro.product.system.name"
+TW_LOAD_VENDOR_MODULES := "goodix_fp.ko adsp_loader_dlkm.ko modules.load msm_drm.ko q6_notifier_dlkm.ko q6_pdr_dlkm.ko sensors_ssc.ko qti_battery_charger_main.ko"
 
 # Vibrator
 TW_SUPPORT_INPUT_AIDL_HAPTICS := true
