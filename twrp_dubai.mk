@@ -15,10 +15,19 @@ $(call inherit-product, vendor/twrp/config/common.mk)
 # Inherit from dubai device
 $(call inherit-product, device/motorola/dubai/device.mk)
 
+# Enable Virtual A/B
+$(call inherit-product, $(SRC_TARGET_DIR)/product/virtual_ab_ota.mk)
+
+
 PRODUCT_DEVICE := dubai
 PRODUCT_NAME := twrp_dubai
 PRODUCT_BRAND := motorola
 PRODUCT_MODEL := motorola edge 30
 PRODUCT_MANUFACTURER := motorola
 
-PRODUCT_GMS_CLIENTID_BASE := android-motorola
+PRODUCT_VIRTUAL_AB_OTA := true
+PRODUCT_VENDOR_PROPERTIES += ro.virtual_ab.enabled=true
+PRODUCT_PACKAGES += \
+    linker.vendor_ramdisk \
+    e2fsck.vendor_ramdisk \
+    fsck.f2fs.vendor_ramdisk \
