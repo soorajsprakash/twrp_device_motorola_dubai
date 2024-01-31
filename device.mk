@@ -20,10 +20,10 @@ $(call inherit-product, $(SRC_TARGET_DIR)/product/gsi_keys.mk)
 LOCAL_PATH := device/motorola/dubai
 
 #SHIPPING API
-PRODUCT_SHIPPING_API_LEVEL := 33
+PRODUCT_SHIPPING_API_LEVEL := 32
 
 #VNDK API
-PRODUCT_TARGET_VNDK_VERSION := 33
+PRODUCT_TARGET_VNDK_VERSION := 32
 
 ifeq ($(TARGET_DEVICE),dubai)
 subdir_makefiles=$(call first-makefiles-under,$(LOCAL_PATH))
