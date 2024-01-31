@@ -23,9 +23,6 @@ AB_OTA_PARTITIONS += \
     vendor \
     vendor_boot
 
-TARGET_NO_RECOVERY := true
-BOARD_BOOT_HEADER_VERSION := 4
-
 # Assert
 TARGET_OTA_ASSERT_DEVICE := dubai
 
@@ -35,14 +32,12 @@ TARGET_ARCH_VARIANT := armv8-a
 TARGET_CPU_ABI := arm64-v8a
 TARGET_CPU_ABI2 := 
 TARGET_CPU_VARIANT := generic
-TARGET_CPU_VARIANT_RUNTIME := cortex-a76
 
 TARGET_2ND_ARCH := arm
 TARGET_2ND_ARCH_VARIANT := armv7-a-neon
 TARGET_2ND_CPU_ABI := armeabi-v7a
 TARGET_2ND_CPU_ABI2 := armeabi
 TARGET_2ND_CPU_VARIANT := generic
-TARGET_2ND_CPU_VARIANT_RUNTIME := cortex-a76
 
 # APEX
 DEXPREOPT_GENERATE_APEX_IMAGE := true
@@ -56,9 +51,7 @@ TARGET_SCREEN_DENSITY := 400
 
 # Kernel
 BOARD_KERNEL_BASE := 0x00000000
-# TODO: remove "androidboot.." from kernel cmdline after verification, effect of boot header v4
 BOARD_KERNEL_CMDLINE := console=ttyMSM0,115200n8 androidboot.hardware=qcom androidboot.console=ttyMSM0 androidboot.memcg=1 lpm_levels.sleep_disabled=1 msm_rtb.filter=0x237 service_locator.enable=1 androidboot.usbcontroller=a600000.dwc3 swiotlb=0 loop.max_part=7 cgroup.memory=nokmem,nosocket pcie_ports=compat iptable_raw.raw_before_defrag=1 ip6table_raw.raw_before_defrag=1 androidboot.hab.csv=8 androidboot.hab.cid=50 firmware_class.path=/vendor/firmware_mnt/image androidboot.hab.product=dubai buildvariant=userdebug
-BOARD_BOOTCONFIG := androidboot.hardware=qcom androidboot.console=ttyMSM0 androidboot.memcg=1 androidboot.usbcontroller=a600000.dwc3 androidboot.hab.csv=8 androidboot.hab.cid=50 androidboot.hab.product=dubai
 BOARD_KERNEL_PAGESIZE := 4096
 BOARD_RAMDISK_OFFSET := 0x01000000
 BOARD_KERNEL_OFFSET := 0x00008000
@@ -99,8 +92,11 @@ BOARD_MOTOROLA_DYNAMIC_PARTITIONS_SIZE := 9122611200 # TODO: Fix hardcoded value
 # https://source.android.com/devices/bootloader/partitions/generic-boot#combinations, "Launch device without recovery partition":
 BOARD_USES_GENERIC_KERNEL_IMAGE := true
 BOARD_MOVE_RECOVERY_RESOURCES_TO_VENDOR_BOOT := true
-BOARD_INCLUDE_RECOVERY_RAMDISK_IN_VENDOR_BOOT := true
+BOARD_EXCLUDE_KERNEL_FROM_RECOVERY_IMAGE := true
 BOARD_MOVE_GSI_AVB_KEYS_TO_VENDOR_BOOT := true
+TARGET_NO_RECOVERY := true
+BOARD_BOOT_HEADER_VERSION := 3
+
 TARGET_USERIMAGES_USE_EXT4 := true
 TARGET_USERIMAGES_USE_F2FS := true
 TARGET_RECOVERY_PIXEL_FORMAT := RGBX_8888
