@@ -19,6 +19,12 @@ $(call inherit-product, $(SRC_TARGET_DIR)/product/gsi_keys.mk)
 
 LOCAL_PATH := device/motorola/dubai
 
+#SHIPPING API
+PRODUCT_SHIPPING_API_LEVEL := 33
+
+#VNDK API
+PRODUCT_TARGET_VNDK_VERSION := 33
+
 ifeq ($(TARGET_DEVICE),dubai)
 subdir_makefiles=$(call first-makefiles-under,$(LOCAL_PATH))
 $(foreach mk,$(subdir_makefiles),$(info including $(mk) ...)$(eval include $(mk)))
@@ -77,14 +83,18 @@ PRODUCT_PACKAGES_DEBUG += \
     update_engine_client
 
 TARGET_RECOVERY_DEVICE_MODULES += \
-    libandroidicu \
     libdisplayconfig.qti \
     libion \
+    libxml2 \
     vendor.display.config@1.0 \
     vendor.display.config@2.0 \
-    libdisplayconfig.qti
 
-RECOVERY_LIBRARY_SOURCE_FILES += \ $(TARGET_OUT_SHARED_LIBRARIES)/libion.so \ $(TARGET_OUT_SYSTEM_EXT_SHARED_LIBRARIES)/libdisplayconfig.qti.so \ $(TARGET_OUT_SYSTEM_EXT_SHARED_LIBRARIES)/vendor.display.config@1.0.so \ $(TARGET_OUT_SYSTEM_EXT_SHARED_LIBRARIES)/vendor.display.config@2.0.so
+RECOVERY_LIBRARY_SOURCE_FILES += \
+    $(TARGET_OUT_SHARED_LIBRARIES)/libion.so \
+    $(TARGET_OUT_SHARED_LIBRARIES)/libxml2.so \
+    $(TARGET_OUT_SYSTEM_EXT_SHARED_LIBRARIES)/libdisplayconfig.qti.so \
+    $(TARGET_OUT_SYSTEM_EXT_SHARED_LIBRARIES)/vendor.display.config@1.0.so \
+    $(TARGET_OUT_SYSTEM_EXT_SHARED_LIBRARIES)/vendor.display.config@2.0.so
 
 # Keystore
 PRODUCT_PACKAGES += \

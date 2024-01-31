@@ -131,7 +131,7 @@ TW_INCLUDE_CRYPTO := true
 TW_INCLUDE_CRYPTO_FBE := true
 BOARD_USES_QCOM_FBE_DECRYPTION := true
 BOARD_USES_METADATA_PARTITION := true
-TW_USE_FSCRYPT_POLICY := 1
+# TW_USE_FSCRYPT_POLICY := 1
 TW_PREPARE_DATA_MEDIA_EARLY := true
 TW_INCLUDE_FBE_METADATA_DECRYPT := true
 PLATFORM_VERSION_LAST_STABLE := $(PLATFORM_VERSION)
@@ -166,7 +166,7 @@ TW_EXCLUDE_APEX := true
 TW_CUSTOM_BATTERY_PATH := "/sys/class/power_supply/mmi_battery"
 TW_CUSTOM_CPU_TEMP_PATH := "/sys/devices/virtual/thermal/thermal_zone50/temp"
 TW_OVERRIDE_SYSTEM_PROPS := "ro.build.date.utc;ro.build.product;ro.build.fingerprint=ro.system.build.fingerprint;ro.build.version.incremental;ro.product.device=ro.product.system.device;ro.product.model=ro.product.system.model;ro.product.name=ro.product.system.name"
-TW_LOAD_VENDOR_MODULES := "goodix_fp.ko adsp_loader_dlkm.ko modules.load msm_drm.ko q6_notifier_dlkm.ko q6_pdr_dlkm.ko sensors_ssc.ko qti_battery_charger_main.ko"
+TW_LOAD_VENDOR_MODULES := "adsp_loader_dlkm.ko qpnp_adaptive_charge.ko sensors_class.ko moto_f_usbnet.ko mmi_sys_temp.ko mmi_info.ko mmi_annotate.ko goodix_brl_mmi.ko mmi_charger.ko mpq-adapter.ko touchscreen_mmi.ko utags.ko"
 
 # Vibrator
 TW_SUPPORT_INPUT_AIDL_HAPTICS := true
