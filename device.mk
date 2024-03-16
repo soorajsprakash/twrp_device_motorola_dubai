@@ -5,25 +5,22 @@
 # SPDX-License-Identifier: Apache-2.0
 #
 
+LOCAL_PATH := device/motorola/dubai
+
 # Enable project quotas and casefolding for emulated storage without sdcardfs
 $(call inherit-product, $(SRC_TARGET_DIR)/product/emulated_storage.mk)
 
 # Enable updating of APEXes
 $(call inherit-product, $(SRC_TARGET_DIR)/product/updatable_apex.mk)
 
-# Enable virtual A/B OTA
-$(call inherit-product, $(SRC_TARGET_DIR)/product/virtual_ab_ota.mk)
-
 # Installs gsi keys into ramdisk, to boot a developer GSI with verified boot.
 $(call inherit-product, $(SRC_TARGET_DIR)/product/gsi_keys.mk)
 
-LOCAL_PATH := device/motorola/dubai
-
 #SHIPPING API
-PRODUCT_SHIPPING_API_LEVEL := 32
+PRODUCT_SHIPPING_API_LEVEL := 31
 
 #VNDK API
-PRODUCT_TARGET_VNDK_VERSION := 32
+PRODUCT_TARGET_VNDK_VERSION := 31
 
 ifeq ($(TARGET_DEVICE),dubai)
 subdir_makefiles=$(call first-makefiles-under,$(LOCAL_PATH))
@@ -40,8 +37,8 @@ AB_OTA_POSTINSTALL_CONFIG += \
 
 # Boot control HAL
 PRODUCT_PACKAGES += \
-    android.hardware.boot@1.0-impl \
-    android.hardware.boot@1.0-service \
+    android.hardware.boot@1.1-impl-qti \
+    android.hardware.boot@1.1-service \
     android.hardware.boot@1.1-impl-qti.recovery
 
 PRODUCT_PACKAGES += \
@@ -66,15 +63,8 @@ PRODUCT_SOONG_NAMESPACES += \
     hardware/qcom-caf/bootctrl \
     vendor/qcom/opensource/commonsys-intf/display
 
-PRODUCT_PACKAGES := \
-    bootctrl.lahaina \
-    libgptutils \
-    libz \
-    libcutils
-
 PRODUCT_PACKAGES += \
     otapreopt_script \
-    cppreopts.sh \
     update_engine \
     update_verifier \
     update_engine_sideload
@@ -96,13 +86,6 @@ RECOVERY_LIBRARY_SOURCE_FILES += \
     $(TARGET_OUT_SYSTEM_EXT_SHARED_LIBRARIES)/vendor.display.config@1.0.so \
     $(TARGET_OUT_SYSTEM_EXT_SHARED_LIBRARIES)/vendor.display.config@2.0.so
 
-# Keystore
-PRODUCT_PACKAGES += \
-    android.system.keystore2
-
 PRODUCT_PACKAGES += \
     qcom_decrypt \
     qcom_decrypt_fbe
-    
-# VINTF
-PRODUCT_ENFORCE_VINTF_MANIFEST := true
