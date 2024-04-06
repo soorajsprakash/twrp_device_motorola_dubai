@@ -29,10 +29,6 @@ Touch Sampling Rate | 360 Hz
 
 ![Device Picture](https://motorolaau.vtexassets.com/arquivos/ids/156289/Motorola-edge-30-pdp-render-Silence-12-bcxm87y2.png)
 
-## Kernel
-
-Prebuilt kernel v5.4 from arrow os
-
 ## Compile
 
 First repo init the twrp-12.1 tree (and necessary qcom dependencies):

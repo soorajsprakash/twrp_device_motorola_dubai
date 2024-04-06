@@ -46,6 +46,7 @@ TARGET_USES_UEFI := true
 TARGET_USES_HARDWARE_QCOM_BOOTCTRL := true
 
 # Kernel
+TARGET_NO_KERNEL := true
 VENDOR_CMDLINE :=  "console=ttyMSM0,115200n8 \
                    androidboot.hardware=qcom \
                    androidboot.console=ttyMSM0 \
@@ -74,15 +75,9 @@ BOARD_MKBOOTIMG_ARGS += --header_version $(BOARD_BOOTIMG_HEADER_VERSION)
 BOARD_MKBOOTIMG_ARGS += --dtb $(TARGET_PREBUILT_DTB)
 BOARD_MKBOOTIMG_ARGS += --pagesize $(BOARD_KERNEL_PAGESIZE) --board ""
 BOARD_MKBOOTIMG_ARGS += --vendor_cmdline $(VENDOR_CMDLINE)
-BOARD_KERNEL_IMAGE_NAME := Image
-TARGET_KERNEL_ARCH := arm64
-TARGET_KERNEL_HEADER_ARCH := arm64
 
-# Kernel - prebuilt
-TARGET_FORCE_PREBUILT_KERNEL := true
-TARGET_PREBUILT_KERNEL := $(DEVICE_PATH)/prebuilt/Image
+# Prebuilts
 TARGET_PREBUILT_DTB := $(DEVICE_PATH)/prebuilt/dtb.img
-TARGET_PREBUILT_KERNEL := $(DEVICE_PATH)/prebuilt/Image
 TARGET_VENDOR_PROP := $(DEVICE_PATH)/vendor.prop
 
 # Partitions
