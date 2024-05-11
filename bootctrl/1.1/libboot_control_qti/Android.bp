@@ -3,12 +3,12 @@ filegroup {
     srcs: ["libboot_control_qti.cpp"],
 }
 
-cc_library_headers {
-    name: "libboot_control_qti_headers",
-    vendor: true,
-    recovery_available: true,
-    export_include_dirs: ["."],
-}
+// cc_library_headers {
+//     name: "libboot_control_qti_headers",
+//     vendor: true,
+//     recovery_available: true,
+//     export_include_dirs: ["."],
+// }
 
 cc_defaults {
     name: "libboot_control_qti_defaults",
@@ -34,5 +34,5 @@ cc_defaults {
     srcs: [
         ":libboot_control_qti_src",
     ],
-    header_libs: ["libboot_control_qti_headers"],
+    // header_libs: ["libboot_control_qti_headers"],
 }
