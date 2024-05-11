@@ -59,10 +59,11 @@ VENDOR_CMDLINE :=  "console=ttyMSM0,115200n8 \
                    swiotlb=0 \
                    loop.max_part=7 \
                    cgroup.memory=nokmem,nosocket \
-                   pcie_ports=compat loop.max_part=7 \
+                   pcie_ports=compat \
+                   loop.max_part=7 \
                    iptable_raw.raw_before_defrag=1 \
                    ip6table_raw.raw_before_defrag=1 \
-                   androidboot.hab.csv=4 \
+                   androidboot.hab.csv=8 \
                    androidboot.hab.product=dubai \
                    androidboot.hab.cid=50 \
                    firmware_class.path=/vendor/firmware_mnt/image \
